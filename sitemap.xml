@@ -6,32 +6,32 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://copine.ch/formate.html</loc>
+    <loc>https://copine.ch/formate</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://copine.ch/standorte.html</loc>
+    <loc>https://copine.ch/standorte</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://copine.ch/insight.html</loc>
+    <loc>https://copine.ch/insight</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://copine.ch/technisches.html</loc>
+    <loc>https://copine.ch/technisches</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://copine.ch/impressum.html</loc>
+    <loc>https://copine.ch/impressum</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://copine.ch/datenschutz.html</loc>
+    <loc>https://copine.ch/datenschutz</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
