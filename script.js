@@ -62,7 +62,7 @@
     }
     if (heroSub) {
       heroSub.textContent = s === 'summer'
-        ? 'Bewegtbild mit Ton auf Grossleinwänden in 30 Open-Air-Kinos. Werbeinventar in allen drei Sprachregionen, national buchbar.'
+        ? 'Bewegtbild mit Ton auf Grossleinwänden in 33 Open-Air-Kinos. Werbeinventar in der Deutschschweiz und Romandie, national buchbar.'
         : 'Bewegtbild mit Ton auf dem Videotron in 14 National-League-Arenen. Werbeinventar in allen drei Sprachregionen, national buchbar.';
     }
     if (heroBadge) {
@@ -75,7 +75,7 @@
     var statsContainer = document.getElementById('hero-stats');
     if (statsContainer) {
       var stats = s === 'summer'
-        ? [{n:'30',l:'Standorte'},{n:'3',l:'Sprachregionen'},{n:'12',l:'Wochen'},{n:'1',l:'Rechnung'}]
+        ? [{n:'33',l:'Standorte'},{n:'2',l:'Sprachregionen'},{n:'12',l:'Wochen'},{n:'1',l:'Rechnung'}]
         : [{n:'14',l:'Arenen'},{n:'3',l:'Sprachregionen'},{n:'3',l:'Formate'},{n:'1',l:'Rechnung'}];
       var statDivs = statsContainer.querySelectorAll('.hero-stat');
       stats.forEach(function(st, i) {
@@ -217,23 +217,69 @@
     });
   }
 
-  /* ── Standorte Map data ──
-     TODO: 4 Open-Air-Standorte fehlen (Soll: 30, Ist: 26).
-           Koordinaten ergänzen sobald bekannt. */
+    /* ── Standorte data ── synchronisiert aus Zoho Books (status=active, cf_coordinates) ── */
   var OA_V = [
-    {n:"Altdorf",x:403.7,y:147.1,r:"D-CH"},{n:"Bad Zurzach",x:353,y:44.7,r:"D-CH"},
-    {n:"Basel",x:251.7,y:49,r:"D-CH"},{n:"Bern",x:228.6,y:137,r:"D-CH"},
-    {n:"Burgdorf",x:257.5,y:121.1,r:"D-CH"},{n:"Chur",x:533.9,y:147.1,r:"D-CH"},
-    {n:"Genf",x:46.3,y:243.7,r:"F-CH"},{n:"La Neuveville",x:179.4,y:121.1,r:"F-CH"},
-    {n:"Laufen",x:238.7,y:69.2,r:"D-CH"},{n:"Lyss",x:209.8,y:118.2,r:"D-CH"},
-    {n:"Morges",x:94,y:200.4,r:"F-CH"},{n:"Oltingen",x:299.5,y:69.2,r:"D-CH"},
-    {n:"Pfäffikon ZH",x:423.9,y:77.9,r:"D-CH"},{n:"Pfäffikon SZ",x:422.5,y:99.5,r:"D-CH"},
-    {n:"Plaffeien",x:208.3,y:167.3,r:"D-CH"},{n:"Reinach BL",x:251.7,y:57.7,r:"D-CH"},
-    {n:"Rolle",x:70.9,y:207.6,r:"F-CH"},{n:"Savognin",x:541.1,y:187.4,r:"D-CH"},
-    {n:"Schöftland",x:318.3,y:85.1,r:"D-CH"},{n:"Sion",x:218.5,y:239.3,r:"F-CH"},
-    {n:"Solothurn",x:244.5,y:99.5,r:"D-CH"},{n:"Spiez",x:266.2,y:174.5,r:"D-CH"},
-    {n:"Sursee",x:327,y:105.3,r:"D-CH"},{n:"Uzwil",x:474.6,y:66.3,r:"D-CH"},
-    {n:"Yverdon",x:114.3,y:161.5,r:"F-CH"},{n:"Zürich",x:390.6,y:79.3,r:"D-CH"}
+    {n:"Altdorf",x:404.4,y:147.0,r:"D-CH"},
+    {n:"Bad Zurzach",x:353.2,y:44.9,r:"D-CH"},
+    {n:"Basel",x:252.0,y:49.4,r:"D-CH"},
+    {n:"Bern",x:230.1,y:137.5,r:"D-CH",c:3},
+    {n:"Burgdorf",x:257.6,y:121.4,r:"D-CH"},
+    {n:"Chur",x:534.0,y:147.5,r:"D-CH"},
+    {n:"Genf",x:46.4,y:243.5,r:"F-CH"},
+    {n:"La Neuveville",x:179.9,y:120.7,r:"F-CH"},
+    {n:"Laufen",x:239.3,y:68.9,r:"D-CH"},
+    {n:"Lyss",x:210.4,y:118.7,r:"D-CH"},
+    {n:"Morges",x:93.6,y:200.9,r:"F-CH"},
+    {n:"Oltingen",x:299.4,y:69.0,r:"D-CH"},
+    {n:"Pfäffikon",x:424.3,y:77.2,r:"D-CH"},
+    {n:"Pfäffikon SZ",x:423.2,y:100.0,r:"D-CH"},
+    {n:"Plaffeien",x:208.3,y:166.9,r:"D-CH"},
+    {n:"Reinach (BL)",x:252.0,y:58.1,r:"D-CH"},
+    {n:"Rolle",x:71.1,y:207.8,r:"F-CH"},
+    {n:"Savognin",x:541.3,y:187.5,r:"D-CH"},
+    {n:"Schöftland",x:318.9,y:84.5,r:"D-CH"},
+    {n:"Sion",x:219.2,y:240.0,r:"F-CH"},
+    {n:"Solothurn",x:243.9,y:100.2,r:"D-CH"},
+    {n:"Spiez",x:266.2,y:174.7,r:"D-CH"},
+    {n:"Sursee",x:327.2,y:104.6,r:"D-CH"},
+    {n:"Uzwil",x:475.0,y:66.5,r:"D-CH"},
+    {n:"Yverdon-les-Bains",x:114.5,y:161.7,r:"F-CH"},
+    {n:"Zürich",x:389.7,y:74.8,r:"D-CH",c:6}
+  ];
+  var OA_VENUES = [
+    {n:"Altdorf",r:"D-CH"},
+    {n:"Bad Zurzach",r:"D-CH"},
+    {n:"Basel, Allianz Cinema",r:"D-CH"},
+    {n:"Bern, Kino im Kocher",r:"D-CH"},
+    {n:"Bern, Marzili",r:"D-CH"},
+    {n:"Bern, Rex Openair",r:"D-CH"},
+    {n:"Burgdorf",r:"D-CH"},
+    {n:"Chur",r:"D-CH"},
+    {n:"Laufen",r:"D-CH"},
+    {n:"Lyss",r:"D-CH"},
+    {n:"Oltingen",r:"D-CH"},
+    {n:"Pfäffikon",r:"D-CH"},
+    {n:"Pfäffikon SZ",r:"D-CH"},
+    {n:"Plaffeien",r:"D-CH"},
+    {n:"Reinach (BL)",r:"D-CH"},
+    {n:"Savognin",r:"D-CH"},
+    {n:"Schöftland",r:"D-CH"},
+    {n:"Solothurn",r:"D-CH"},
+    {n:"Spiez",r:"D-CH"},
+    {n:"Sursee",r:"D-CH"},
+    {n:"Uzwil",r:"D-CH"},
+    {n:"Zürich, Allianz Cinema",r:"D-CH"},
+    {n:"Zürich, Bloom",r:"D-CH"},
+    {n:"Zürich, Dolder Wellenkino",r:"D-CH"},
+    {n:"Zürich, Filmfluss",r:"D-CH"},
+    {n:"Zürich, Oerlikon",r:"D-CH"},
+    {n:"Zürich, Xenix",r:"D-CH"},
+    {n:"Genf, Allianz Cinema",r:"F-CH"},
+    {n:"La Neuveville",r:"F-CH"},
+    {n:"Morges",r:"F-CH"},
+    {n:"Rolle",r:"F-CH"},
+    {n:"Sion",r:"F-CH"},
+    {n:"Yverdon-les-Bains",r:"F-CH"}
   ];
   var AR_V = [
     {n:"Ambrì",x:412.3,y:200.4,r:"I-CH"},{n:"Porrentruy",x:176.5,y:69.2,r:"F-CH"},
@@ -273,7 +319,7 @@
       g.setAttribute('data-idx', i);
       g.setAttribute('tabindex', '0');
       g.setAttribute('role', 'button');
-      g.setAttribute('aria-label', p.n);
+      g.setAttribute('aria-label', p.c ? (p.n + ', ' + p.c + ' Standorte') : p.n);
 
       var c1 = document.createElementNS('http://www.w3.org/2000/svg','circle');
       c1.setAttribute('cx',p.x); c1.setAttribute('cy',p.y);
@@ -292,7 +338,7 @@
       txt.setAttribute('font-size','11');
       txt.setAttribute('font-family','Outfit,sans-serif');
       txt.setAttribute('font-weight','500');
-      txt.textContent = p.n;
+      txt.textContent = p.c ? (p.n + ' · ' + p.c) : p.n;
       txt.style.display = 'none';
       txt.classList.add('map-label');
 
@@ -335,7 +381,9 @@
     if (regionGrid) {
       var groups = {'D-CH':[],'F-CH':[],'I-CH':[]};
       var regionNames = {'D-CH':'Deutschschweiz','F-CH':'Romandie','I-CH':'Tessin'};
-      pts.forEach(function(p) { if (groups[p.r]) groups[p.r].push(p.n); });
+      // For Open-Air, list shows all 33 venues (not just the 26 city dots)
+      var listSrc = (season === 'summer') ? OA_VENUES : pts;
+      listSrc.forEach(function(p) { if (groups[p.r]) groups[p.r].push(p.n); });
       regionGrid.innerHTML = '';
       Object.keys(groups).forEach(function(reg) {
         if (groups[reg].length === 0) return;
@@ -361,7 +409,7 @@
     }
     if (mapDesc) {
       mapDesc.textContent = season === 'summer'
-        ? '30 Open-Air-Kinos in der ganzen Schweiz. Karte zeigt eine Auswahl.'
+        ? '33 Open-Air-Kinos in 26 Städten — Deutschschweiz und Romandie.'
         : '14 Arenen in allen drei Sprachregionen.';
     }
   }
