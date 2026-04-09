@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Standorte — Copine</title>
+  <meta name="description" content="Netzwerk: 30 Open-Air-Kinos und 14 Eishockey-Arenen in allen drei Sprachregionen der Schweiz.">
+
+  <link rel="canonical" href="https://copine.ch/standorte.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="robots" content="index,follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_CH">
+  <meta property="og:site_name" content="Copine">
+  <meta property="og:url" content="https://copine.ch/standorte.html">
+  <meta property="og:title" content="Standorte — Copine">
+  <meta property="og:description" content="30 Open-Air-Kinos und 14 Eishockey-Arenen in allen drei Sprachregionen.">
+  <meta property="og:image" content="https://copine.ch/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="season-summer">
+
+  <a href="#main" class="sr-only">Zum Inhalt springen</a>
+
+  <nav class="nav" aria-label="Hauptnavigation">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a href="index.html" class="nav-logo">Copine</a>
+        <button type="button" class="season-toggle" data-season="summer">
+          <span class="icon" aria-hidden="true">☀️</span>
+          <span class="label">Sommer</span>
+        </button>
+      </div>
+      <div class="nav-links desktop-only-flex">
+        <a href="formate.html" class="nav-link">Formate</a>
+        <a href="standorte.html" class="nav-link active" aria-current="page">Standorte</a>
+        <a href="insight.html" class="nav-link">Insight</a>
+        <a href="technisches.html" class="nav-link">Technisches</a>
+      </div>
+      <button type="button" class="hamburger">☰</button>
+    </div>
+    <div class="mobile-menu">
+      <a href="formate.html" class="mobile-link">Formate</a>
+      <a href="standorte.html" class="mobile-link active" aria-current="page">Standorte</a>
+      <a href="insight.html" class="mobile-link">Insight</a>
+      <a href="technisches.html" class="mobile-link">Technisches</a>
+    </div>
+  </nav>
+
+  <main id="main">
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-tag">Netzwerk</div>
+      <h1 id="standorte-title" class="section-title">Open-Air <em>Standorte</em></h1>
+      <p id="standorte-desc" class="standorte-desc">30 Open-Air-Kinos in der ganzen Schweiz. Karte zeigt eine Auswahl.</p>
+
+      <div class="map-container">
+        <svg id="standorte-map" viewBox="0 0 680 310"></svg>
+      </div>
+
+      <div class="region-grid"></div>
+
+      <div class="cta-row">
+        <a href="/mediakit.pdf" class="btn-mediakit small" download><span aria-hidden="true">↓</span> Mediakit</a>
+        <a href="mailto:info&#64;copine.ch?subject=Verf%C3%BCgbarkeiten%20anfragen" class="btn-outline">Verfügbarkeiten</a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Copine</div>
+          <div class="footer-nav">
+            <a href="formate.html">Formate</a>
+            <a href="standorte.html">Standorte</a>
+            <a href="insight.html">Insight</a>
+            <a href="technisches.html">Technisches</a>
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-label">Kontakt</div>
+          <address class="footer-addr">Copine Kinowerbung GmbH<br>Langstrasse 62<br>8004 Zürich</address>
+        </div>
+        <div class="desktop-only">
+          <div class="footer-label">&nbsp;</div>
+          <div><div class="footer-contact-label">T</div><a href="tel:+41435432450" class="footer-contact-val">+41 43 543 24 50</a></div>
+          <div><div class="footer-contact-label">E</div><a href="mailto:info&#64;copine.ch" class="footer-contact-val">info&#64;copine.ch</a></div>
+        </div>
+      </div>
+      <div class="footer-mobile-contact">
+        <a href="tel:+41435432450">+41 43 543 24 50</a>
+        <a href="mailto:info&#64;copine.ch">info&#64;copine.ch</a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 Copine Kinowerbung GmbH</div>
+        <div class="footer-copy desktop-only">Audiovisuelle Live-Werbung</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

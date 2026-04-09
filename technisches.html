@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technisches — Copine</title>
+  <meta name="description" content="Technische Spezifikationen für Spotanlieferung: DCP für Open-Air-Kino, MP4/MOV für Eishockey-Arenen.">
+
+  <link rel="canonical" href="https://copine.ch/technisches.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="robots" content="index,follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_CH">
+  <meta property="og:site_name" content="Copine">
+  <meta property="og:url" content="https://copine.ch/technisches.html">
+  <meta property="og:title" content="Technisches — Copine">
+  <meta property="og:description" content="Spezifikationen für Spotanlieferung. DCP für Kino, MP4/MOV für Arena.">
+  <meta property="og:image" content="https://copine.ch/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="season-summer">
+
+  <a href="#main" class="sr-only">Zum Inhalt springen</a>
+
+  <nav class="nav" aria-label="Hauptnavigation">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a href="index.html" class="nav-logo">Copine</a>
+        <button type="button" class="season-toggle" data-season="summer">
+          <span class="icon" aria-hidden="true">☀️</span>
+          <span class="label">Sommer</span>
+        </button>
+      </div>
+      <div class="nav-links desktop-only-flex">
+        <a href="formate.html" class="nav-link">Formate</a>
+        <a href="standorte.html" class="nav-link">Standorte</a>
+        <a href="insight.html" class="nav-link">Insight</a>
+        <a href="technisches.html" class="nav-link active" aria-current="page">Technisches</a>
+      </div>
+      <button type="button" class="hamburger">☰</button>
+    </div>
+    <div class="mobile-menu">
+      <a href="formate.html" class="mobile-link">Formate</a>
+      <a href="standorte.html" class="mobile-link">Standorte</a>
+      <a href="insight.html" class="mobile-link">Insight</a>
+      <a href="technisches.html" class="mobile-link active" aria-current="page">Technisches</a>
+    </div>
+  </nav>
+
+  <main id="main">
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-tag">Produktion</div>
+      <h1 class="section-title tech-h1">Sie liefern den Spot.<br><em>Wir kümmern uns um den Rest.</em></h1>
+      <p class="tech-lead">
+        Von der Anlieferung bis zur Ausspielung — Copine übernimmt die gesamte technische Abwicklung.</p>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3 class="step-title">Anliefern</h3>
+          <p class="step-desc">Per E-Mail an <a href="mailto:dcp&#64;copine.ch">dcp&#64;copine.ch</a> oder Upload-Link auf Anfrage.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3 class="step-title">Prüfung</h3>
+          <p class="step-desc">Format, Auflösung, Spotlänge und Audiopegel.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3 class="step-title">Mastering</h3>
+          <p class="step-desc">DCP für Kinos, Konvertierung für Arenen.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <h3 class="step-title">Verteilung</h3>
+          <p class="step-desc">An alle gebuchten Standorte.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">05</div>
+          <h3 class="step-title">Bestätigung</h3>
+          <p class="step-desc">Proof of Play mit Foto-/Videomaterial.</p>
+        </div>
+      </div>
+
+      <div class="tech-cta-row">
+        <a href="mailto:dcp&#64;copine.ch?subject=Spot-Anlieferung" class="btn-mediakit"><span aria-hidden="true">↑</span> Spot anliefern</a>
+        <a href="/mediakit.pdf" class="btn-outline" download><span aria-hidden="true">↓</span> Spec Sheet</a>
+        <span class="tech-or">oder dcp&#64;copine.ch</span>
+      </div>
+
+      <div class="specs-grid">
+        <div class="spec-panel cinema">
+          <button type="button" class="spec-panel-header" data-spec-toggle="0">
+            <span class="spec-panel-title">Open-Air Cinema</span>
+            <span id="spec-arrow-0" class="spec-panel-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div id="spec-body-0" class="spec-panel-body">
+            <div class="spec-row"><span class="spec-label">Format</span><span class="spec-value">DCP, InterOp</span></div>
+            <div class="spec-row"><span class="spec-label">Bild</span><span class="spec-value">ProRes HQ, 1998×1080</span></div>
+            <div class="spec-row"><span class="spec-label">Framerate</span><span class="spec-value">25 fps</span></div>
+            <div class="spec-row"><span class="spec-label">Ton</span><span class="spec-value">5.1 Surround, 48kHz, 24bit</span></div>
+            <div class="spec-row"><span class="spec-label">Pegel</span><span class="spec-value">−20 dBFS, max 82 Leq(m)</span></div>
+          </div>
+        </div>
+        <div class="spec-panel hockey">
+          <button type="button" class="spec-panel-header" data-spec-toggle="1">
+            <span class="spec-panel-title">Eishockey Arena</span>
+            <span id="spec-arrow-1" class="spec-panel-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div id="spec-body-1" class="spec-panel-body">
+            <div class="spec-row"><span class="spec-label">Format</span><span class="spec-value">MP4 / MOV (H.264)</span></div>
+            <div class="spec-row"><span class="spec-label">Auflösung</span><span class="spec-value">Full HD 1920×1080</span></div>
+            <div class="spec-row"><span class="spec-label">Spotlänge</span><span class="spec-value">Max. 30 Sek.</span></div>
+            <div class="spec-row"><span class="spec-label">Ton</span><span class="spec-value">Stereo, TV-Spot 1:1</span></div>
+            <div class="spec-row"><span class="spec-label">Vorlauf</span><span class="spec-value">Mind. 7 Tage</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Copine</div>
+          <div class="footer-nav">
+            <a href="formate.html">Formate</a>
+            <a href="standorte.html">Standorte</a>
+            <a href="insight.html">Insight</a>
+            <a href="technisches.html">Technisches</a>
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-label">Kontakt</div>
+          <address class="footer-addr">Copine Kinowerbung GmbH<br>Langstrasse 62<br>8004 Zürich</address>
+        </div>
+        <div class="desktop-only">
+          <div class="footer-label">&nbsp;</div>
+          <div><div class="footer-contact-label">T</div><a href="tel:+41435432450" class="footer-contact-val">+41 43 543 24 50</a></div>
+          <div><div class="footer-contact-label">E</div><a href="mailto:info&#64;copine.ch" class="footer-contact-val">info&#64;copine.ch</a></div>
+        </div>
+      </div>
+      <div class="footer-mobile-contact">
+        <a href="tel:+41435432450">+41 43 543 24 50</a>
+        <a href="mailto:info&#64;copine.ch">info&#64;copine.ch</a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 Copine Kinowerbung GmbH</div>
+        <div class="footer-copy desktop-only">Audiovisuelle Live-Werbung</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
