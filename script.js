@@ -540,6 +540,7 @@
       btn.textContent = 'Wird gesendet…';
 
       // POST to Zoho CRM Web-to-Contact Form
+      var season = getSeason();
       var formData = new FormData();
       formData.append('xnQsjsdp', 'fb57d80952f7699e78d40ea6a3d27035d310e9d7925710600685aa7effb25ea6');
       formData.append('xmIwtLD', 'b8989c828cc4f593d10824ef634ebf371fb4d46e4d6c9482c23bdb9dc42884c936da94f5367c75578d5d1926d1986923');
@@ -548,6 +549,7 @@
       formData.append('Email', email);
       formData.append('Last Name', name);
       if (company) formData.append('Account Name', company);
+      formData.append('Description', season);
       formData.append('aG9uZXlwb3Q', '');
 
       fetch('https://crm.zoho.eu/crm/WebToContactForm', {
