@@ -57,13 +57,13 @@
     var heroBadge = document.getElementById('hero-badge');
     if (heroTitle) {
       heroTitle.innerHTML = s === 'summer'
-        ? 'Audiovisuelle Werbung<br>im <span>Open-Air-Kino</span>'
-        : 'Audiovisuelle Werbung<br>in der <span>Eishockey-Arena</span>';
+        ? 'Ihr TV-Spot auf der <span>Grossleinwand</span> und in der <span>Arena</span>'
+        : 'Ihr TV-Spot in der <span>Eishockey-Arena</span> und auf der <span>Grossleinwand</span>';
     }
     if (heroSub) {
       heroSub.textContent = s === 'summer'
-        ? 'Bewegtbild mit Ton auf Grossleinwänden in 33 Open-Air-Kinos. Werbeinventar in der Deutschschweiz und Romandie, national buchbar.'
-        : 'Bewegtbild mit Ton auf dem Videotron in 14 National-League-Arenen. Werbeinventar in allen drei Sprachregionen, national buchbar.';
+        ? '33 Open-Air-Kinos im Sommer, 14 Eishockey-Arenen im Winter. Eine Buchung, eine Rechnung.'
+        : '14 Eishockey-Arenen im Winter, 33 Open-Air-Kinos im Sommer. Eine Buchung, eine Rechnung.';
     }
     if (heroBadge) {
       heroBadge.textContent = s === 'summer'
@@ -75,8 +75,8 @@
     var statsContainer = document.getElementById('hero-stats');
     if (statsContainer) {
       var stats = s === 'summer'
-        ? [{n:'33',l:'Standorte'},{n:'2',l:'Sprachregionen'},{n:'12',l:'Wochen'},{n:'1',l:'Rechnung'}]
-        : [{n:'14',l:'Arenen'},{n:'3',l:'Sprachregionen'},{n:'3',l:'Formate'},{n:'1',l:'Rechnung'}];
+        ? [{n:'33',l:'Standorte'},{n:'14',l:'Arenen'},{n:'3',l:'Sprachregionen'},{n:'1',l:'Rechnung'}]
+        : [{n:'14',l:'Arenen'},{n:'33',l:'Standorte'},{n:'3',l:'Sprachregionen'},{n:'1',l:'Rechnung'}];
       var statDivs = statsContainer.querySelectorAll('.hero-stat');
       stats.forEach(function(st, i) {
         if (statDivs[i]) {
