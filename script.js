@@ -305,13 +305,27 @@
         : 'Karte der National-League-Arenen in der Schweiz');
     svg.innerHTML = '';
 
-    function showPoint(c1, c2, txt) {
-      c1.setAttribute('r','14'); c2.setAttribute('r','5');
-      txt.style.display = 'block';
+    // Build lookup: city name → venue names (only for multi-venue cities)
+    var cityVenues = {};
+    if (season === 'summer') {
+      OA_VENUES.forEach(function(v) {
+        var comma = v.n.indexOf(',');
+        if (comma > -1) {
+          var city = v.n.substring(0, comma);
+          var venue = v.n.substring(comma + 2);
+          if (!cityVenues[city]) cityVenues[city] = [];
+          cityVenues[city].push(venue);
+        }
+      });
     }
-    function hidePoint(c1, c2, txt) {
+
+    function showPoint(c1, c2, label) {
+      c1.setAttribute('r','14'); c2.setAttribute('r','5');
+      label.style.display = 'block';
+    }
+    function hidePoint(c1, c2, label) {
       c1.setAttribute('r','8'); c2.setAttribute('r','3.5');
-      txt.style.display = 'none';
+      label.style.display = 'none';
     }
 
     pts.forEach(function(p, i) {
@@ -331,23 +345,72 @@
       c2.setAttribute('r','3.5'); c2.setAttribute('fill',dot);
       c2.classList.add('map-dot');
 
-      var txt = document.createElementNS('http://www.w3.org/2000/svg','text');
-      txt.setAttribute('x',p.x); txt.setAttribute('y',p.y - 16);
-      txt.setAttribute('text-anchor','middle');
-      txt.setAttribute('fill','rgba(255,255,255,0.7)');
-      txt.setAttribute('font-size','11');
-      txt.setAttribute('font-family','Outfit,sans-serif');
-      txt.setAttribute('font-weight','500');
-      txt.textContent = p.c ? (p.n + ' · ' + p.c) : p.n;
-      txt.style.display = 'none';
-      txt.classList.add('map-label');
+      var label;
+      var venues = cityVenues[p.n];
 
-      g.appendChild(c1); g.appendChild(c2); g.appendChild(txt);
+      if (p.c && venues && venues.length > 1) {
+        // Multi-venue tooltip
+        label = document.createElementNS('http://www.w3.org/2000/svg','g');
+        label.classList.add('map-label');
+        label.style.display = 'none';
 
-      g.addEventListener('mouseenter', function() { showPoint(c1, c2, txt); });
-      g.addEventListener('mouseleave', function() { hidePoint(c1, c2, txt); });
-      g.addEventListener('focus', function() { showPoint(c1, c2, txt); });
-      g.addEventListener('blur', function() { hidePoint(c1, c2, txt); });
+        var lineH = 16;
+        var padX = 10, padY = 8;
+        var lines = [p.n + ' · ' + p.c].concat(venues);
+        var tooltipH = padY * 2 + lines.length * lineH;
+        var tooltipW = 130;
+        var tx = p.x - tooltipW / 2;
+        var ty = p.y - tooltipH - 14;
+
+        // Flip below if too close to top
+        if (ty < 4) ty = p.y + 18;
+
+        // Clamp horizontal
+        if (tx < 4) tx = 4;
+        if (tx + tooltipW > 676) tx = 676 - tooltipW;
+
+        var bg = document.createElementNS('http://www.w3.org/2000/svg','rect');
+        bg.setAttribute('x', tx);
+        bg.setAttribute('y', ty);
+        bg.setAttribute('width', tooltipW);
+        bg.setAttribute('height', tooltipH);
+        bg.setAttribute('rx', '6');
+        bg.setAttribute('fill', 'rgba(20,20,20,0.92)');
+        bg.setAttribute('stroke', season === 'summer' ? 'rgba(255,190,100,0.3)' : 'rgba(140,180,240,0.3)');
+        bg.setAttribute('stroke-width', '1');
+        label.appendChild(bg);
+
+        lines.forEach(function(line, li) {
+          var t = document.createElementNS('http://www.w3.org/2000/svg','text');
+          t.setAttribute('x', tx + padX);
+          t.setAttribute('y', ty + padY + (li + 1) * lineH - 3);
+          t.setAttribute('fill', li === 0 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.6)');
+          t.setAttribute('font-size', li === 0 ? '11' : '10');
+          t.setAttribute('font-family', 'Outfit,sans-serif');
+          t.setAttribute('font-weight', li === 0 ? '600' : '400');
+          t.textContent = line;
+          label.appendChild(t);
+        });
+      } else {
+        // Simple single-line label
+        label = document.createElementNS('http://www.w3.org/2000/svg','text');
+        label.setAttribute('x',p.x); label.setAttribute('y',p.y - 16);
+        label.setAttribute('text-anchor','middle');
+        label.setAttribute('fill','rgba(255,255,255,0.7)');
+        label.setAttribute('font-size','11');
+        label.setAttribute('font-family','Outfit,sans-serif');
+        label.setAttribute('font-weight','500');
+        label.textContent = p.c ? (p.n + ' · ' + p.c) : p.n;
+        label.style.display = 'none';
+        label.classList.add('map-label');
+      }
+
+      g.appendChild(c1); g.appendChild(c2); g.appendChild(label);
+
+      g.addEventListener('mouseenter', function() { showPoint(c1, c2, label); });
+      g.addEventListener('mouseleave', function() { hidePoint(c1, c2, label); });
+      g.addEventListener('focus', function() { showPoint(c1, c2, label); });
+      g.addEventListener('blur', function() { hidePoint(c1, c2, label); });
 
       svg.appendChild(g);
     });
@@ -414,6 +477,103 @@
     }
   }
 
+  /* ── Mediakit Modal ── */
+  function initMediakitModal() {
+    // Inject modal HTML once
+    var overlay = document.createElement('div');
+    overlay.className = 'mk-overlay';
+    overlay.id = 'mk-overlay';
+    overlay.innerHTML =
+      '<div class="mk-modal" role="dialog" aria-labelledby="mk-title">' +
+        '<button type="button" class="mk-close" aria-label="Schliessen">&times;</button>' +
+        '<div id="mk-form-view">' +
+          '<h3 id="mk-title">Mediakit anfordern</h3>' +
+          '<p>Wir senden Ihnen das aktuelle Mediakit per E-Mail zu.</p>' +
+          '<form class="mk-form" id="mk-form">' +
+            '<input type="email" class="mk-input" id="mk-email" placeholder="E-Mail-Adresse *" required autocomplete="email">' +
+            '<input type="text" class="mk-input" id="mk-name" placeholder="Name *" required autocomplete="name">' +
+            '<input type="text" class="mk-input" id="mk-company" placeholder="Firma (optional)" autocomplete="organization">' +
+            '<button type="submit" class="mk-submit" id="mk-btn">Mediakit senden</button>' +
+          '</form>' +
+          '<div class="mk-privacy">Mit dem Absenden stimmen Sie unserer <a href="/datenschutz">Datenschutzerklärung</a> zu.</div>' +
+        '</div>' +
+        '<div id="mk-success-view" class="mk-success" style="display:none">' +
+          '<h3>Vielen Dank!</h3>' +
+          '<p>Das Mediakit wird in Kürze an Ihre E-Mail-Adresse gesendet.</p>' +
+          '<a href="/mediakit.pdf" class="mk-dl" download>Jetzt herunterladen</a>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+
+    var closeBtn = overlay.querySelector('.mk-close');
+    var form = document.getElementById('mk-form');
+    var formView = document.getElementById('mk-form-view');
+    var successView = document.getElementById('mk-success-view');
+
+    function openModal() {
+      overlay.classList.add('open');
+      formView.style.display = '';
+      successView.style.display = 'none';
+      form.reset();
+      setTimeout(function() { document.getElementById('mk-email').focus(); }, 100);
+    }
+
+    function closeModal() {
+      overlay.classList.remove('open');
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = document.getElementById('mk-email').value.trim();
+      var name = document.getElementById('mk-name').value.trim();
+      var company = document.getElementById('mk-company').value.trim();
+      var btn = document.getElementById('mk-btn');
+      btn.disabled = true;
+      btn.textContent = 'Wird gesendet…';
+
+      // POST to Zoho CRM Web-to-Contact Form
+      var formData = new FormData();
+      formData.append('xnQsjsdp', 'fb57d80952f7699e78d40ea6a3d27035d310e9d7925710600685aa7effb25ea6');
+      formData.append('xmIwtLD', 'b8989c828cc4f593d10824ef634ebf371fb4d46e4d6c9482c23bdb9dc42884c936da94f5367c75578d5d1926d1986923');
+      formData.append('actionType', 'Q29udGFjdHM=');
+      formData.append('returnURL', 'https://copine.ch/mediakit.pdf');
+      formData.append('Email', email);
+      formData.append('Last Name', name);
+      if (company) formData.append('Account Name', company);
+      formData.append('aG9uZXlwb3Q', '');
+
+      fetch('https://crm.zoho.eu/crm/WebToContactForm', {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      }).catch(function() {});
+
+      // Show success after brief delay (no-cors = can't read response)
+      setTimeout(function() {
+        formView.style.display = 'none';
+        successView.style.display = '';
+        btn.disabled = false;
+        btn.textContent = 'Mediakit senden';
+      }, 800);
+    });
+
+    // Intercept all Mediakit download links
+    document.querySelectorAll('a[href="/mediakit.pdf"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal();
+      });
+    });
+  }
+
   /* ── Init ── */
   document.addEventListener('DOMContentLoaded', function() {
     applySeason(getSeason());
@@ -422,6 +582,7 @@
     initHeroAnim();
     initFormatTabs();
     initSpecPanels();
+    initMediakitModal();
 
     // Bind season toggle buttons (replaces inline onclick)
     document.querySelectorAll('.season-toggle').forEach(function(btn) {
